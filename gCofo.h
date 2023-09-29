@@ -1,3 +1,4 @@
+// Gabriel Belo Pereira dos Reis
 #ifndef __GCOFO_H_
 #define __GCOFO_H_
 
