@@ -1,4 +1,4 @@
-//Gabriel Belo Pereira dos Reis
+// Gabriel Belo Pereira dos Reis
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,35 +10,33 @@
 #define FALSE 0
 
 gCofo *chamaGCofCreate();
-int chamaGCofDestroy(gCofo *meuCofo);
-void chamaGCofInsert(gCofo *meuCofo);
-void chamaGCofQuery(gCofo *meuCofo);
-void chamaGCofRemove(gCofo *meuCofo);
-void chamaGCofItems(gCofo *meuCofo);
-void gCofEmpty(gCofo *meuCofo);
-int cmpId(void *a, void *b);
-int cmpNome(void *a, void *b);
+int chamaGCofDestroy(gCofo *CofoOriginal);
+void chamaGCofInsert(gCofo *CofoOriginal);
+void chamaGCofQuery(gCofo *CofoOriginal);
+void chamaGCofRemove(gCofo *CofoOriginal);
+void chamaGCofItems(gCofo *CofoOriginal);
+void gCofEmpty(gCofo *CofoOriginal);
+int cmpId(void *A1, void *B1);
+int cmpNome(void *A1, void *B1);
 
 int main(void)
 {
     setlocale(LC_ALL, "Portuguese_Brazil");
-    gCofo *meuCofo;
+    gCofo *CofoOriginal;
     int opcao = 0, cofoCriado = FALSE;
 
     do
     {
-        printf("\n\n|------------------------------------------------|\n");
-        printf("|                      MENU                      |\n");
-        printf("|------------------------------------------------|\n");
-        printf("|| 1. Criar o cofo\n");
-        printf("|| 2. Inserir um jogador no cofo\n");
-        printf("|| 3. Verificar se um jogador está no cofo\n");
-        printf("|| 4. Mostrar jogadores no cofo\n");
-        printf("|| 5. Remover um jogador do cofo\n");
-        printf("|| 6. Esvaziar o cofo\n");
-        printf("|| 7. Destruir o cofo\n");
-        printf("|| 8. Sair\n");
-        printf("||- Sua escolha: ");
+        printf("                      OPERACÕES                      \n");
+        printf(" 1. Criar o cofo\n");
+        printf(" 2. Inserir um jogador no cofo\n");
+        printf(" 3. Verificar se um jogador está no cofo\n");
+        printf(" 4. Mostrar jogadores no cofo\n");
+        printf(" 5. Remover um jogador do cofo\n");
+        printf(" 6. Esvaziar o cofo\n");
+        printf(" 7. Destruir o cofo\n");
+        printf(" 8. Sair\n");
+        printf("- Sua escolha: ");
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -46,90 +44,90 @@ int main(void)
         case 1:
             if (cofoCriado == FALSE)
             {
-                meuCofo = chamaGCofCreate();
-                if (meuCofo != FALSE)
+                CofoOriginal = chamaGCofCreate();
+                if (CofoOriginal != FALSE)
                 {
                     cofoCriado = TRUE;
                 }
             }
             else
             {
-                printf("\nVocê já possui um cofo criado. Divirta-se com as operações do seu cofo!");
+                printf("\nVocê já possui um cofo!");
             }
             break;
 
         case 2:
             if (cofoCriado)
             {
-                chamaGCofInsert(meuCofo);
+                chamaGCofInsert(CofoOriginal);
             }
             else
             {
-                printf("\nATENÇÃO: antes de utilizar as operações você deve primeireiramente criar um cofo!");
+                printf("\nCrie um cofo antes de inserir jogadores!");
             }
             break;
 
         case 3:
             if (cofoCriado)
             {
-                chamaGCofQuery(meuCofo);
+                chamaGCofQuery(CofoOriginal);
             }
             else
             {
-                printf("\nATENÇÃO: antes de utilizar as operações você deve primeireiramente criar um cofo!");
+                printf("\nCrie um cofo antes de verificar se um jogador está nele!");
             }
             break;
 
         case 4:
             if (cofoCriado)
             {
-                chamaGCofItems(meuCofo);
+                chamaGCofItems(CofoOriginal);
             }
             else
             {
-                printf("\nATENÇÃO: antes de utilizar as operações você deve primeireiramente criar um cofo!");
+                printf("\nCrie um cofo antes de verificar se um jogador está nele!");
             }
             break;
 
         case 5:
             if (cofoCriado)
             {
-                chamaGCofRemove(meuCofo);
+                chamaGCofRemove(CofoOriginal);
             }
             else
             {
-                printf("\nATENÇÃO: antes de utilizar as operações você deve primeireiramente criar um cofo!");
+                printf("\nCrie um cofo antes de remover jogadores!");
             }
             break;
 
         case 6:
             if (cofoCriado)
             {
-                gCofEmpty(meuCofo);
+                gCofEmpty(CofoOriginal);
             }
             else
             {
-                printf("\nATENÇÃO: antes de utilizar as operações você deve primeireiramente criar um cofo!");
+                printf("\nCrie um cofo antes de esvaziá-lo!");
             }
             break;
 
         case 7:
             if (cofoCriado)
             {
-                cofoCriado = chamaGCofDestroy(meuCofo);
+                cofoCriado = chamaGCofDestroy(CofoOriginal);
             }
             else
             {
-                printf("\nATENÇÃO: antes de utilizar as operações você deve primeireiramente criar um cofo!");
+                printf("\nCrie um cofo antes de destruí-lo!");
             }
             break;
 
         case 8:
-            printf("\n\nObrigado por utilizar meu programa :) !!\n\n");
+            printf("\n\nFinalizado...\n\n");
             break;
 
         default:
-            printf("\n\nAtenção: digite um dígito válido!\n\n");
+            printf("\n\n Digite algo válido\n\n");
         }
 
     } while (opcao != 8);
@@ -142,30 +140,30 @@ gCofo *chamaGCofCreate()
     int tamanhoCofo;
     gCofo *c;
 
-    printf("\nVAMOS CRIAR SEU COFO!");
+    printf("\n\nCriando o cofo...\n");
     printf("\nDigite o tamanho do cofo: ");
     scanf("%d", &tamanhoCofo);
     c = gcofCreate(tamanhoCofo);
 
     if (c != NULL)
     {
-        printf("Cofo criado com SUCESSO!");
+        printf("Cofo criado! ");
         return c;
     }
     else
     {
-        printf("\nNão foi possível criar seu cofo, tente novamente mais tarde :( !");
+        printf("\nNão foi possível criar seu cofo");
         return FALSE;
     }
 }
 
-int chamaGCofDestroy(gCofo *meuCofo)
+int chamaGCofDestroy(gCofo *CofoOriginal)
 {
     int sucesso;
-    sucesso = gcofDestroy(meuCofo);
+    sucesso = gcofDestroy(CofoOriginal);
     if (sucesso)
     {
-        printf("\nCofo Destruído!");
+        printf("\nCofo Destruído");
         return FALSE;
     }
     else
@@ -175,7 +173,7 @@ int chamaGCofDestroy(gCofo *meuCofo)
     }
 }
 
-void chamaGCofInsert(gCofo *meuCofo)
+void chamaGCofInsert(gCofo *CofoOriginal)
 {
     int sucesso;
     Jogador *j = (Jogador *)malloc(sizeof(Jogador));
@@ -188,10 +186,10 @@ void chamaGCofInsert(gCofo *meuCofo)
         printf("Digite o salário do jogador: ");
         scanf("%f", &(j->salario));
 
-        sucesso = gcofInsert(meuCofo, (void *)j);
+        sucesso = gcofInsert(CofoOriginal, (void *)j);
         if (sucesso)
         {
-            printf("\nJogador inserido com SUCESSO!");
+            printf("\nJogador inserido! ");
         }
         else
         {
@@ -205,13 +203,13 @@ void chamaGCofInsert(gCofo *meuCofo)
     }
 }
 
-void chamaGCofQuery(gCofo *meuCofo)
+void chamaGCofQuery(gCofo *CofoOriginal)
 {
     int id;
     Jogador *j;
     printf("\nDigite o ID do jogador que deseja buscar: ");
     scanf("%d", &id);
-    j = (Jogador *)gcofQuery(meuCofo, &id, cmpId);
+    j = (Jogador *)gcofQuery(CofoOriginal, &id, cmpId);
     if (j != NULL)
     {
         printf("\nJogador encontrado!");
@@ -225,13 +223,13 @@ void chamaGCofQuery(gCofo *meuCofo)
     }
 }
 
-void chamaGCofRemove(gCofo *meuCofo)
+void chamaGCofRemove(gCofo *CofoOriginal)
 {
     int id;
     Jogador *j;
     printf("\nDigite o ID do jogador que deseja remover: ");
     scanf("%d", &id);
-    j = (Jogador *)gcofRemove(meuCofo, &id, cmpId);
+    j = (Jogador *)gcofRemove(CofoOriginal, &id, cmpId);
     if (j != NULL)
     {
         printf("\nJogador removido com SUCESSO!");
@@ -246,10 +244,10 @@ void chamaGCofRemove(gCofo *meuCofo)
     }
 }
 
-void chamaGCofItems(gCofo *meuCofo)
+void chamaGCofItems(gCofo *CofoOriginal)
 {
     Jogador *j;
-    j = (Jogador *)gcofGetFirst(meuCofo);
+    j = (Jogador *)gcofGetFirst(CofoOriginal);
     if (j != NULL)
     {
         do
@@ -258,7 +256,7 @@ void chamaGCofItems(gCofo *meuCofo)
             printf("\nID: %d", j->id);
             printf("\nSalário: %.2f", j->salario);
             printf("\n-----------------------------");
-            j = (Jogador *)gcofGetNext(meuCofo);
+            j = (Jogador *)gcofGetNext(CofoOriginal);
         } while (j != NULL);
     }
     else
@@ -267,23 +265,23 @@ void chamaGCofItems(gCofo *meuCofo)
     }
 }
 
-void gCofEmpty(gCofo *meuCofo)
+void gCofEmpty(gCofo *CofoOriginal)
 {
     Jogador *j;
-    j = (Jogador *)gcofGetFirst(meuCofo);
+    j = (Jogador *)gcofGetFirst(CofoOriginal);
     while (j != NULL)
     {
-        j = (Jogador *)gcofRemove(meuCofo, &(j->id), cmpId);
+        j = (Jogador *)gcofRemove(CofoOriginal, &(j->id), cmpId);
         free(j);
-        j = (Jogador *)gcofGetFirst(meuCofo);
+        j = (Jogador *)gcofGetFirst(CofoOriginal);
     }
     printf("\nCofo esvaziado com SUCESSO!");
 }
 
-int cmpId(void *a, void *b)
+int cmpId(void *A1, void *B1)
 {
-    Jogador *j = (Jogador *)b;
-    int *id = (int *)a;
+    Jogador *j = (Jogador *)B1;
+    int *id = (int *)A1;
     if (*id == j->id)
     {
         return TRUE;
@@ -294,10 +292,10 @@ int cmpId(void *a, void *b)
     }
 }
 
-int cmpNome(void *a, void *b)
+int cmpNome(void *A1, void *B1)
 {
-    Jogador *j = (Jogador *)b;
-    char *nome = (char *)a;
+    Jogador *j = (Jogador *)B1;
+    char *nome = (char *)A1;
     if (strcmp(nome, j->nome) == 0)
     {
         return TRUE;

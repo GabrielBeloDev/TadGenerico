@@ -58,14 +58,14 @@ int gcofInsert(gCofo *gc, void *item)
 
 void *gcofGetFirst(gCofo *gc)
 {
-    void *elm;
+    void *elms;
     if (gc != NULL)
     {
         if (gc->numItens > 0)
         {
-            elm = gc->item[0];
+            elms = gc->item[0];
             gc->cur = 0;
-            return elm;
+            return elms;
         }
     }
     return NULL;
@@ -73,20 +73,20 @@ void *gcofGetFirst(gCofo *gc)
 
 void *gcofGetNext(gCofo *gc)
 {
-    void *elm;
+    void *elms;
     if (gc != NULL)
     {
         if (gc->numItens > 0 && gc->cur < gc->numItens - 1)
         {
             gc->cur++;
-            elm = gc->item[gc->cur];
-            return elm;
+            elms = gc->item[gc->cur];
+            return elms;
         }
     }
     return NULL;
 }
 
-void *gcofQuery(gCofo *gc, void *key, int (*cmp)(void *a, void *b))
+void *gcofQuery(gCofo *gc, void *key, int (*cmp)(void *A1, void *B1))
 {
     int stat, i;
     if (gc != NULL)
