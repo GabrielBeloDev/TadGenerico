@@ -38,12 +38,13 @@ The `gCofo` structure is a data structure that stores players.
 
 ```
 gcc main.c gCofo.c -o main
-Execution
-
-Copy code
+```
+### Execution
+```
 ./main
-Contribution
+```
+### Contribution
 Feel free to contribute to this project by forking it and submitting a pull request.
 
-License
+### License
 This project is licensed under the MIT license.
